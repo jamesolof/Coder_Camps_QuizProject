@@ -1,20 +1,24 @@
 var quiz = (function () {
     function quiz(questions) {
+        if (questions === void 0) { questions = []; }
         this.questions = questions;
         this.totalScore = 0;
     }
     quiz.prototype.runQuiz = function () {
         for (var _i = 0, _a = this.questions; _i < _a.length; _i++) {
-            var key = _a[_i];
-            this.adjustScore(this.questions[key].ask());
+            var i = _a[_i];
+            this.adjustScore(i.ask());
         }
+        alert("you scored " + this.totalScore + " \n great jorb");
     };
     quiz.prototype.adjustScore = function (result) {
         if (result = true) {
             this.totalScore++;
+            console.log(this.totalScore);
         }
         if (result = false) {
             this.totalScore--;
+            console.log(this.totalScore);
         }
     };
     return quiz;
@@ -29,24 +33,20 @@ var question = (function () {
         var answerTry = window.prompt(this.question + " \n " + this.choices);
         var success = false;
         if (answerTry == this.answer) {
-            totalScore++;
-            alert("youre right! \n Score = " + totalScore);
+            alert("youre right!");
             success = true;
         }
         else {
-            alert("youre wrong!!!!!!1 \n Score = " + totalScore);
+            alert("youre wrong!!!!!!1");
         }
         return success;
     };
     return question;
 }());
-var quiz1 = 4;
-var quiz1 = (_a = new question("what color is the sky?", "blue", "choices: blue, green, red"), 0 = _a[0], _a);
-var quiz2 = new quiz("what is the moon made of?", "cheese", "choices: gold, lava, cheese");
-var quiz3 = new quiz("what is gokus power level", "9001", "choices: 0, 9000, 9001");
-var quiz4 = new quiz("wheres my car", "dude", "choices: garage, driveway, dude");
-quiz1.present();
-quiz2.present();
-quiz3.present();
-quiz4.present();
-var _a;
+var questions = [];
+questions[0] = new question("what color is the sky?", "blue", "choices: blue, green, red");
+questions[1] = new question("what is the moon made of?", "cheese", "choices: gold, lava, cheese");
+questions[2] = new question("what is gokus power level", "9001", "choices: 0, 9000, 9001");
+questions[3] = new question("wheres my car", "dude", "choices: garage, driveway, dude");
+var test1 = new quiz(questions);
+test1.runQuiz();
